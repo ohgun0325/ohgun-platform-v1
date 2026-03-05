@@ -1,0 +1,84 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+env/
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+
+# Models
+models/
+models/qlora_checkpoints/
+app/models/midm/
+*.pth
+*.bin
+*.safetensors
+
+# Data
+app/data/
+data/
+
+# Logs
+*.log
+logs/
+
+# Docker
+docker-compose.override.yml
+
+# Node modules (frontend)
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/build/
+
+# Test
+.pytest_cache/
+.coverage
+htmlcov/
+
+# SSH Keys (보안상 Git에 올리면 안 됨)
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Misc
+*.bak
+*.tmp
+artifacts/**
+artifacts_train/**
+node_modules

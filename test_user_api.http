@@ -1,0 +1,48 @@
+### User API 테스트 파일 (VS Code REST Client 확장 사용)
+
+### 1. 규칙 기반 테스트 - 인사
+POST http://localhost:8000/api/v1/admin/user
+Content-Type: application/json
+
+{
+  "message": "안녕하세요"
+}
+
+### 2. 규칙 기반 테스트 - 도움말
+POST http://localhost:8000/api/v1/admin/user
+Content-Type: application/json
+
+{
+  "message": "도움말"
+}
+
+### 3. 규칙 기반 테스트 - 프로젝트
+POST http://localhost:8000/api/v1/admin/user
+Content-Type: application/json
+
+{
+  "message": "프로젝트"
+}
+
+### 4. 정책 기반 테스트 - 복잡한 질문
+POST http://localhost:8000/api/v1/admin/user
+Content-Type: application/json
+
+{
+  "message": "KOICA 프로젝트의 진행 상황과 예산 사용 현황을 상세히 분석해주세요",
+  "user_id": 1,
+  "context": {
+    "project_id": 123
+  }
+}
+
+### 5. 정책 기반 테스트 - 일반 질문
+POST http://localhost:8000/api/v1/admin/user
+Content-Type: application/json
+
+{
+  "message": "보고서 생성 방법을 알려주세요"
+}
+
+### 6. Health Check
+GET http://localhost:8000/health

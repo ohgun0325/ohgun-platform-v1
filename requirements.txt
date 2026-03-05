@@ -1,0 +1,58 @@
+# LangChain 핵심
+langchain>=0.1.0
+langchain-core>=0.1.0
+langchain-community>=0.0.20
+langchain-google-genai>=0.0.12
+
+# 로컬 임베딩 (HuggingFace, artifacts/embedding-models)
+sentence-transformers>=2.2.0
+
+# 데이터베이스 (NeonDB PostgreSQL)
+psycopg2-binary>=2.9.9
+pgvector>=0.2.4
+
+# FastAPI 서버
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+pydantic-settings>=2.0.0
+
+# 환경 변수 관리
+python-dotenv>=1.0.0
+
+# Redis (Upstash, BullMQ 연동)
+upstash-redis>=1.0.0
+
+# LLM 모델 라이브러리 (Midm LLM 사용 시 필요)
+# CUDA 버전: pip install torch --index-url https://download.pytorch.org/whl/cu118
+# 또는 CPU 버전: pip install torch
+torch>=2.0.0
+transformers>=4.30.0
+accelerate>=0.20.0
+
+# LangGraph (랭그래프 구축용)
+langgraph>=0.2.0
+langchain-openai>=0.0.5
+
+# PDF 전처리 (보고서 → JSONL)
+pdfplumber>=0.11.0
+
+# Word/Excel 문서 처리
+python-docx>=1.0.0
+pandas>=2.0.0
+openpyxl>=3.1.0
+
+# 입찰서류 인감도장/서명 검출
+PyMuPDF>=1.23.0
+ultralytics>=8.0.0
+Pillow>=10.0.0
+
+# OCR 모델
+easyocr>=1.7.0  # GPU 가속 OCR (한국어/영어 지원)
+
+# 모델 훈련 관련
+peft>=0.5.0  # LoRA/PEFT 지원
+bitsandbytes>=0.41.0  # 4-bit 양자화
+trl>=0.7.0  # SFTTrainer 지원
+datasets>=2.14.0  # HuggingFace Datasets
+
+fastmcp>=0.1.0

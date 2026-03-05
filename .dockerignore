@@ -1,0 +1,27 @@
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info
+dist
+build
+.git
+.gitignore
+.dockerignore
+README.md
+.vscode
+.idea
+*.md
+# 모델 파일은 볼륨으로 마운트하므로 제외
+models/**/*.safetensors
+models/**/*.bin
+models/**/*.pt
+models/**/*.pth
+models/**/*.onnx
+models/**/*.h5
+models/**/*.ckpt
+# 하지만 디렉토리 구조는 포함
+!models/.gitkeep

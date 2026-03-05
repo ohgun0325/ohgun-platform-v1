@@ -1,0 +1,128 @@
+%% LangGraph State Machine 다이어그램
+
+stateDiagram-v2
+    [*] --> DataPreparation: 학습 시작
+    
+    state "데이터 준비" as DataPreparation {
+        [*] --> LoadCSV: CSV 로드
+        LoadCSV --> Preprocess: 전처리
+        Preprocess --> Split: 분할
+        Split --> InstructionFormat: Instruction 포맷
+        InstructionFormat --> [*]
+    }
+    
+    DataPreparation --> SFTStage: train_data 준비 완료
+    
+    state "SFT 학습" as SFTStage {
+        [*] --> PrepareDataset: Dataset 생성
+        PrepareDataset --> SetupTrainer: SFTTrainer 설정
+        SetupTrainer --> TrainSFT: 학습 실행
+        TrainSFT --> SaveCheckpoint: 체크포인트 저장
+        SaveCheckpoint --> EvaluateSFT: 검증 데이터 평가
+        EvaluateSFT --> [*]
+    }
+    
+    SFTStage --> QLoRAStage: sft_metrics 생성
+    
+    state "QLoRA 최적화" as QLoRAStage {
+        [*] --> LoadSFTModel: SFT 모델 로드
+        LoadSFTModel --> ApplyQuantization: 4-bit Quantization
+        ApplyQuantization --> AddLoRA: LoRA Adapters 추가
+        AddLoRA --> TrainQLoRA: Fine-tuning
+        TrainQLoRA --> SaveQLoRA: 체크포인트 저장
+        SaveQLoRA --> EvaluateQLoRA: 검증 데이터 평가
+        EvaluateQLoRA --> [*]
+    }
+    
+    QLoRAStage --> RLHFStage: qlora_metrics 생성
+    
+    state "RLHF 학습" as RLHFStage {
+        [*] --> CollectFeedback: 사람 피드백 수집
+        CollectFeedback --> TrainRewardModel: Reward Model 학습
+        TrainRewardModel --> SetupPPO: PPO Trainer 설정
+        SetupPPO --> TrainPPO: PPO 학습
+        TrainPPO --> SaveRLHF: 체크포인트 저장
+        SaveRLHF --> EvaluateRLHF: 검증 데이터 평가
+        EvaluateRLHF --> [*]
+    }
+    
+    RLHFStage --> DPOStage: rlhf_metrics 생성
+    
+    state "DPO 최적화" as DPOStage {
+        [*] --> PreparePreference: Preference 데이터 준비
+        PreparePreference --> SetupDPO: DPO Trainer 설정
+        SetupDPO --> TrainDPO: DPO 학습
+        TrainDPO --> SaveDPO: 최종 모델 저장
+        SaveDPO --> EvaluateDPO: 테스트 데이터 평가
+        EvaluateDPO --> [*]
+    }
+    
+    DPOStage --> EvaluationStage: dpo_metrics 생성
+    
+    state "평가 및 피드백" as EvaluationStage {
+        [*] --> TestModel: 테스트 데이터 평가
+        TestModel --> CalculateMetrics: 지표 계산
+        CalculateMetrics --> ErrorAnalysis: 오류 분석
+        ErrorAnalysis --> GenerateFeedback: 자동 피드백 생성
+        GenerateFeedback --> CheckTarget: 목표 달성 여부
+        CheckTarget --> [*]
+    }
+    
+    EvaluationStage --> ContinueDecision: should_continue 플래그
+    
+    state ContinueDecision <<choice>>
+    ContinueDecision --> FeedbackIntegration: should_continue = True
+    ContinueDecision --> [*]: should_continue = False (완료)
+    
+    state "피드백 통합" as FeedbackIntegration {
+        [*] --> MergeFeedback: 사람+자동 피드백 병합
+        MergeFeedback --> CreatePreference: Preference 데이터 생성
+        CreatePreference --> AugmentData: 학습 데이터 증강
+        AugmentData --> IncrementIteration: iteration++
+        IncrementIteration --> [*]
+    }
+    
+    FeedbackIntegration --> SFTStage: 다음 반복 시작
+    
+    note right of DataPreparation
+        State 업데이트:
+        - raw_data
+        - train_data, val_data, test_data
+        - current_stage = "sft"
+    end note
+    
+    note right of SFTStage
+        State 업데이트:
+        - model_checkpoint_path
+        - sft_metrics
+        - current_stage = "qlora"
+    end note
+    
+    note right of QLoRAStage
+        State 업데이트:
+        - model_checkpoint_path
+        - qlora_metrics
+        - current_stage = "rlhf"
+    end note
+    
+    note right of RLHFStage
+        State 업데이트:
+        - model_checkpoint_path
+        - rlhf_metrics
+        - human_feedback
+        - current_stage = "dpo"
+    end note
+    
+    note right of DPOStage
+        State 업데이트:
+        - model_checkpoint_path
+        - dpo_metrics
+        - current_stage = "completed"
+    end note
+    
+    note right of EvaluationStage
+        State 업데이트:
+        - auto_feedback
+        - should_continue
+        - iteration++
+    end note
