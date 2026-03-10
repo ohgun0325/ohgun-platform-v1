@@ -1,0 +1,46 @@
+"""KOICA 도메인 에이전트.
+
+KoicaOrchestrator를 래핑하여 에이전트 인터페이스를 제공합니다.
+"""
+
+from __future__ import annotations
+
+from typing import Any, Dict, Optional
+
+from app.domain.chat_hub.bases.chat_result import ChatResult
+from app.domain.koica.hub.orchestrators.koica_orchestrator import (
+    KoicaOrchestrator,
+)
+
+
+class KoicaAgent:
+    """KOICA 도메인 질의를 처리하는 에이전트."""
+
+    def __init__(
+        self, orchestrator: Optional[KoicaOrchestrator] = None
+    ) -> None:
+        """에이전트 초기화.
+
+        Args:
+            orchestrator: KoicaOrchestrator 인스턴스 (None이면 새로 생성)
+        """
+        self._orchestrator = orchestrator or KoicaOrchestrator()
+
+    async def process(
+        self, question: str, context: Dict[str, Any]
+    ) -> ChatResult:
+        """KOICA 질의를 처리합니다.
+
+        Args:
+            question: 사용자 질문
+            context: 컨텍스트 (db_conn, embedding_dim, chat_model 등)
+
+        Returns:
+            ChatResult: 처리 결과
+        """
+        return await self._orchestrator.process(question, context)
+
+    @property
+    def orchestrator(self) -> KoicaOrchestrator:
+        """내부 오케스트레이터 인스턴스 반환."""
+        return self._orchestrator
