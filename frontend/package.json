@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "dev": "pnpm --dir www dev",
+    "dev:admin": "pnpm --dir admin dev"
+  },
   "dependencies": {
     "bullmq": "^5.67.2",
     "dotenv": "^16.4.5",

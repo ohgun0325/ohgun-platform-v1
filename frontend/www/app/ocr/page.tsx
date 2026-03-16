@@ -341,7 +341,7 @@ export default function OcrPage() {
       }
       const correctedText = dataLlm.corrected_text ?? dataLlm.raw_full_text ?? '';
       const usedLlm = dataLlm.used_llm === true;
-      const fields = (dataLlm.fields as Record<string, string>) ?? {};
+      const fields = (dataLlm.fields as Record<string, string | { value?: string }>) ?? {};
       const corrections = (dataLlm.corrections as { original: string; corrected: string }[]) ?? [];
       setOcrResult((prev) =>
         prev
@@ -361,12 +361,13 @@ export default function OcrPage() {
           usedLlm &&
           Object.keys(fields).some((k) => {
             const field = fields[k];
-            return fieldKeys.includes(k as keyof TemplateState) && field?.value && String(field.value).trim() !== '';
+            const value = typeof field === 'string' ? field : field?.value;
+            return fieldKeys.includes(k as keyof TemplateState) && value != null && String(value).trim() !== '';
           });
         if (hasApiFields) {
           fieldKeys.forEach((key) => {
             const field = fields[key];
-            const v = field?.value;
+            const v = typeof field === 'string' ? field : field?.value;
             if (v != null && String(v).trim() !== '') next[key] = String(v).trim();
           });
         } else {
