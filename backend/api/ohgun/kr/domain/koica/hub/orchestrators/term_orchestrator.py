@@ -7,8 +7,8 @@ from __future__ import annotations
 
 from typing import Optional
 
-from app.domain.chat_hub.bases.chat_result import ChatResult
-from app.domain.terms.services.term_service import TermService
+from domain.chat_hub.bases.chat_result import ChatResult
+from domain.terms.services.term_service import TermService
 
 
 class TermOrchestrator:

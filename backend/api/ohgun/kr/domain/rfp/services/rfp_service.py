@@ -8,15 +8,15 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Union, Optional, List
 
-from app.domain.rfp.schemas.rfp_schema import (
+from domain.rfp.schemas.rfp_schema import (
     RfPDocument,
     Requirement,
     RequirementExtractionRequest,
     RequirementExtractionResponse,
 )
-from app.domain.rfp.parsers.rfp_pdf_parser import RfPPDFParser
-from app.domain.rfp.parsers.requirement_extractor import RequirementExtractor
-from app.domain.rfp.repositories.requirement_repository import (
+from domain.rfp.parsers.rfp_pdf_parser import RfPPDFParser
+from domain.rfp.parsers.requirement_extractor import RequirementExtractor
+from domain.rfp.repositories.requirement_repository import (
     RequirementRepository,
     RfPDocumentRepository,
 )
@@ -137,7 +137,7 @@ class RfPService:
         Returns:
             필수 요구사항 리스트
         """
-        from app.domain.rfp.schemas.rfp_schema import RequirementPriority
+        from domain.rfp.schemas.rfp_schema import RequirementPriority
         return self.requirement_repo.find_requirements_by_priority(
             rfp_id, 
             RequirementPriority.MANDATORY
@@ -152,7 +152,7 @@ class RfPService:
         Returns:
             기술 요구사항 리스트
         """
-        from app.domain.rfp.schemas.rfp_schema import RequirementType
+        from domain.rfp.schemas.rfp_schema import RequirementType
         return self.requirement_repo.find_requirements_by_type(
             rfp_id,
             RequirementType.TECHNICAL

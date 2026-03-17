@@ -10,7 +10,7 @@ try:
 except ImportError:
     raise ImportError("python-docx가 필요합니다. pip install python-docx")
 
-from app.domain.shared.ms_word.base import WordExtractionStrategy
+from domain.shared.ms_word.base import WordExtractionStrategy
 
 
 class DocxReader(WordExtractionStrategy):

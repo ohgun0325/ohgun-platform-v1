@@ -8,14 +8,14 @@ from typing import Optional
 import psycopg2
 from pgvector.psycopg2 import register_vector
 
-from app.core.config import settings
-from app.core.database.base import Base
-from app.core.database.mixin import (
+from core.config import settings
+from core.database.base import Base
+from core.database.mixin import (
     TimestampMixin,
     SoftDeleteMixin,
     StatusMixin,
 )
-from app.core.database.session import (
+from core.database.session import (
     engine,
     AsyncSessionLocal,
     get_db,

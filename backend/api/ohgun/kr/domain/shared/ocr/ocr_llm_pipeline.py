@@ -10,7 +10,7 @@ import logging
 import re
 from typing import Any, Dict, List, Optional, Tuple
 
-from app.domain.shared.bases.semantic_matcher import get_default_semantic_matcher
+from domain.shared.bases.semantic_matcher import get_default_semantic_matcher
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)

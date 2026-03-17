@@ -10,7 +10,7 @@ try:
 except ImportError:
     raise ImportError("pandas가 필요합니다. pip install pandas openpyxl")
 
-from app.domain.shared.ms_excel.base import ExcelExtractionStrategy
+from domain.shared.ms_excel.base import ExcelExtractionStrategy
 
 
 class PandasExcelReader(ExcelExtractionStrategy):

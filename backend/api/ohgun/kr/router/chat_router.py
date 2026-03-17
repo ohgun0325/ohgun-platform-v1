@@ -3,10 +3,10 @@
 import asyncio
 from fastapi import APIRouter, HTTPException, Request
 
-from app.core.embeddings import generate_embeddings
-from app.core.vectorstore import query_similar_documents
-from app.core.query_classifier import classify_query_complexity
-from app.schemas import ChatRequest, ChatResponse
+from core.embeddings import generate_embeddings
+from core.vectorstore import query_similar_documents
+from core.query_classifier import classify_query_complexity
+from schemas import ChatRequest, ChatResponse
 from langchain_core.messages import HumanMessage, SystemMessage
 
 router = APIRouter(tags=["chat"])
@@ -138,7 +138,7 @@ async def chat(request: Request, chat_request: ChatRequest) -> ChatResponse:
                     error_msg = str(e)[:200]
                     print(f"⚠️ LangGraph 실행 오류: {error_msg}, 랭체인으로 fallback")
                     # Fallback to LangChain
-                    from app.core.chat_chain import chat_with_ai
+                    from core.chat_chain import chat_with_ai
                     response = await asyncio.to_thread(
                         chat_with_ai,
                         db_conn,
@@ -154,7 +154,7 @@ async def chat(request: Request, chat_request: ChatRequest) -> ChatResponse:
                 else:
                     print(f"🔄 LangChain 사용: Graph가 없어 fallback")
                 
-                from app.core.chat_chain import chat_with_ai
+                from core.chat_chain import chat_with_ai
                 
                 response = await asyncio.to_thread(
                     chat_with_ai,

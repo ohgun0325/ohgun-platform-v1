@@ -10,15 +10,15 @@ from __future__ import annotations
 
 from typing import Any, Dict, Optional
 
-from app.domain.chat_hub.bases.chat_result import ChatResult
-from app.domain.koica.services.koica_test_qa_service import KoicaTestQAService
-from app.domain.koica.services.policy_rule_classifier import PolicyRuleClassifier
-from app.domain.chat_hub.orchestrators.rag_orchestrator import run_rag_chat
-from app.domain.koica.hub.orchestrators.general_orchestrator import (
+from domain.chat_hub.bases.chat_result import ChatResult
+from domain.koica.services.koica_test_qa_service import KoicaTestQAService
+from domain.koica.services.policy_rule_classifier import PolicyRuleClassifier
+from domain.chat_hub.orchestrators.rag_orchestrator import run_rag_chat
+from domain.koica.hub.orchestrators.general_orchestrator import (
     GeneralOrchestrator,
 )
-from app.domain.koica.mcp.server import KoicaMCPServer
-from app.domain.terms.services.term_service import TermService
+from domain.koica.mcp.server import KoicaMCPServer
+from domain.terms.services.term_service import TermService
 
 
 class KoicaOrchestrator:

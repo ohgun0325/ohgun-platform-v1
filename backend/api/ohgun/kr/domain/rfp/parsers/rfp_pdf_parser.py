@@ -9,8 +9,8 @@ import re
 from pathlib import Path
 from typing import Union, List, Dict, Any, Optional
 
-from app.domain.shared.pdf import PDFContext, PDFFactory
-from app.domain.rfp.schemas.rfp_schema import (
+from domain.shared.pdf import PDFContext, PDFFactory
+from domain.rfp.schemas.rfp_schema import (
     RfPDocument,
     RfPMetadata,
     Requirement,

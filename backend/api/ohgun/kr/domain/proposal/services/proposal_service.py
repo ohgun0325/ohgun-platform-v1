@@ -8,12 +8,12 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Union, Optional, List
 
-from app.domain.proposal.schemas.proposal_schema import (
+from domain.proposal.schemas.proposal_schema import (
     ProposalDocument,
     ProposalSection,
     ProposalParsingResponse,
 )
-from app.domain.proposal.parsers.proposal_pdf_parser import ProposalPDFParser
+from domain.proposal.parsers.proposal_pdf_parser import ProposalPDFParser
 
 
 class ProposalService:

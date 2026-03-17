@@ -8,8 +8,8 @@ from __future__ import annotations
 
 from typing import Any, Dict, Optional
 
-from app.domain.chat_hub.bases.chat_result import ChatResult
-from app.domain.chat_hub.orchestrators.chat_orchestrator import ChatOrchestrator
+from domain.chat_hub.bases.chat_result import ChatResult
+from domain.chat_hub.orchestrators.chat_orchestrator import ChatOrchestrator
 from artifacts.models.core.manager import ModelManager
 from artifacts.models.interfaces.base import BaseLLMModel
 

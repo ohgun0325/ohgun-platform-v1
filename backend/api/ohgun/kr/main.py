@@ -3,14 +3,14 @@
 import sys
 from pathlib import Path
 
-# 프로젝트 루트를 Python 경로에 추가 (app/main.py를 직접 실행할 때)
+# kr 모듈 루트를 Python 경로에 추가 (api.ohgun.kr.main 로드 시 import 해결용)
 # 이 코드는 모든 import 전에 실행되어야 함
 try:
     if __file__:
-        project_root = Path(__file__).parent.parent.absolute()
+        project_root = Path(__file__).parent.absolute()
         if str(project_root) not in sys.path:
             sys.path.insert(0, str(project_root))
-            print(f"📁 프로젝트 루트 경로 추가: {project_root}")
+            print(f"[kr] module root added: {project_root}")
 except NameError:
     # __file__이 없는 경우 (예: 인터랙티브 모드)
     pass
@@ -24,26 +24,26 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 
-from app.api.v1.koica.koica_router import router as koica_router
-from app.api.v1.detect.detect_router import router as detect_router
-from app.domain.shared.router import router as shared_router
-from app.api.v1.term.term_router import router as term_router
-from app.api.v1.admin.user_router import router as user_router
-from app.api.v1.evaluation.evaluation_router import router as evaluation_router
-from app.api.v1.ocr.ocr_router import router as ocr_router
-from app.api.v1.excel.excel_router import router as excel_router
-from app.api.v10.soccer.player_router import router as soccer_player_router
-from app.api.v10.soccer.team_router import router as soccer_team_router
-from app.api.v10.soccer.stadium_router import router as soccer_stadium_router
-from app.api.v10.soccer.schedule_router import router as soccer_schedule_router
-from app.core import (
+from api.v1.koica.koica_router import router as koica_router
+from api.v1.detect.detect_router import router as detect_router
+from domain.shared.router import router as shared_router
+from api.v1.term.term_router import router as term_router
+from api.v1.admin.user_router import router as user_router
+from api.v1.evaluation.evaluation_router import router as evaluation_router
+from api.v1.ocr.ocr_router import router as ocr_router
+from api.v1.excel.excel_router import router as excel_router
+from api.v10.soccer.player_router import router as soccer_player_router
+from api.v10.soccer.team_router import router as soccer_team_router
+from api.v10.soccer.stadium_router import router as soccer_stadium_router
+from api.v10.soccer.schedule_router import router as soccer_schedule_router
+from core import (
     insert_sample_data,
     setup_pgvector,
     wait_for_db,
 )
 from artifacts.models.interfaces.base import BaseLLMModel
 from artifacts.models.core.manager import ModelManager
-from app.core.config import settings
+from core.config import settings
 
 try:
     from langchain_google_genai import ChatGoogleGenerativeAI
@@ -62,7 +62,7 @@ async def lifespan(app: FastAPI):
     # Soccer 테이블 마이그레이션 적용 (Alembic upgrade head 만 수행)
     # - 새로운 revision은 생성하지 않고, 이미 생성된 마이그레이션만 적용한다.
     try:
-        from app.core.database.migrations import apply_soccer_migrations
+        from core.database.migrations import apply_soccer_migrations
 
         await asyncio.to_thread(apply_soccer_migrations)
     except Exception as e:
@@ -122,7 +122,7 @@ async def lifespan(app: FastAPI):
     if settings.use_qlora:
         # QLoRA 모델 사용
         try:
-            from app.domain.koica.services.chat_service import QLoRAChatService
+            from domain.koica.services.chat_service import QLoRAChatService
 
             print("📦 QLoRA 서비스 초기화 중... (시간이 걸릴 수 있습니다)")
 
@@ -244,7 +244,7 @@ async def lifespan(app: FastAPI):
             print(f"🔑 Gemini API 키 길이: {len(settings.gemini_api_key)} (처음 10자: {settings.gemini_api_key[:10]}...)")
             try:
                 def load_gemini_model():
-                    from app.core import get_chat_model
+                    from core import get_chat_model
                     return get_chat_model()
 
                 gemini_model = await asyncio.to_thread(load_gemini_model)
@@ -272,7 +272,7 @@ async def lifespan(app: FastAPI):
     rag_graph = None
     if chat_model and not settings.use_qlora:
         try:
-            from app.domain.koica.orchestrators.rag_orchestrator import build_rag_graph
+            from domain.koica.orchestrators.rag_orchestrator import build_rag_graph
 
             print("🔧 LangGraph 빌드 중...")
             rag_graph = await asyncio.to_thread(
@@ -291,7 +291,7 @@ async def lifespan(app: FastAPI):
     # 인감도장/서명 검출용 YOLO 모델 로드 (1회)
     stamp_detector = None
     try:
-        from app.domain.detect.services.stamp_detector import StampDetector
+        from domain.detect.services.stamp_detector import StampDetector
         _project_root = Path(__file__).resolve().parent.parent
         model_path = Path(settings.yolo_model_path)
         if not model_path.is_absolute():
@@ -393,7 +393,7 @@ def test_config_and_database():
     print("\n[1단계] Config 설정 확인")
     print("-" * 60)
     try:
-        from app.core.config import settings
+        from core.config import settings
 
         print(f"✅ Config 모듈 로드 성공")
         print(f"   - App Title: {settings.app_title}")
@@ -425,7 +425,7 @@ def test_config_and_database():
     print("-" * 60)
     try:
         import psycopg2
-        from app.core.database import get_db_connection
+        from core.database import get_db_connection
 
         print("🔄 데이터베이스 연결 시도 중...")
         conn = get_db_connection(register_vector_extension=False)
@@ -499,7 +499,7 @@ def test_config_and_database():
     print("-" * 60)
     try:
         # wait_for_db 함수 테스트
-        from app.core.database import wait_for_db
+        from core.database import wait_for_db
 
         print("🔄 wait_for_db() 함수 테스트...")
         wait_for_db(max_retries=3)
@@ -534,7 +534,7 @@ if __name__ == "__main__":
 
         import uvicorn
         uvicorn.run(
-            "app.main:app",
+            "api.ohgun.kr.main:app",
             host="0.0.0.0",
             port=8000,
             reload=True,

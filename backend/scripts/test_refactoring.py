@@ -4,7 +4,8 @@ import sys
 from pathlib import Path
 
 project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root))
+kr_root = project_root / "api" / "ohgun" / "kr"
+sys.path.insert(0, str(kr_root))
 
 
 def test_pdf_strategies():
@@ -14,7 +15,7 @@ def test_pdf_strategies():
     print("=" * 60)
     
     try:
-        from app.domain.shared.pdf import PDFContext, PDFFactory
+        from domain.shared.pdf import PDFContext, PDFFactory
         
         strategy = PDFFactory.get_default_for_text()
         print("[OK] PyMuPDF strategy created")
@@ -45,7 +46,7 @@ def test_rfp_domain():
     print("=" * 60)
     
     try:
-        from app.domain.rfp import (
+        from domain.rfp import (
             RfPService,
             RfPPDFParser,
             RequirementRepository,
@@ -83,7 +84,7 @@ def test_proposal_domain():
     print("=" * 60)
     
     try:
-        from app.domain.proposal import (
+        from domain.proposal import (
             ProposalService,
             ProposalPDFParser,
             SectionType,
@@ -115,7 +116,7 @@ def test_evaluation_domain():
     print("=" * 60)
     
     try:
-        from app.domain.evaluation import (
+        from domain.evaluation import (
             EvaluationOrchestrator,
             Matcher,
             RuleValidator,
@@ -157,7 +158,7 @@ def test_api_router():
     print("=" * 60)
     
     try:
-        from app.api.v1.evaluation.evaluation_router import router
+        from api.v1.evaluation.evaluation_router import router
         
         print("[OK] Evaluation router imported")
         print(f"  - Prefix: {router.prefix}")

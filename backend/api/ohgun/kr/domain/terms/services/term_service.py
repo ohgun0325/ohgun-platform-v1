@@ -6,7 +6,7 @@
 from pathlib import Path
 from typing import Optional
 
-from app.domain.terms.models.oda_term import (
+from domain.terms.models.oda_term import (
     ODATermDictionary,
     ODATermEntry,
 )

@@ -8,7 +8,7 @@ from __future__ import annotations
 import json
 from typing import List, Dict, Any, Optional
 
-from app.domain.rfp.schemas.rfp_schema import (
+from domain.rfp.schemas.rfp_schema import (
     Requirement,
     RequirementType,
     RequirementPriority,

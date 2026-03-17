@@ -9,13 +9,13 @@ from __future__ import annotations
 from dataclasses import asdict
 from typing import Any, Dict, Optional
 
-from app.domain.chat_hub.bases.chat_result import ChatResult
-from app.domain.chat_hub.services.question_classifier import QuestionClassifier
-from app.domain.chat_hub.services.question_classifier import QuestionClassification
-from app.domain.koica.hub.orchestrators.koica_orchestrator import (
+from domain.chat_hub.bases.chat_result import ChatResult
+from domain.chat_hub.services.question_classifier import QuestionClassifier
+from domain.chat_hub.services.question_classifier import QuestionClassification
+from domain.koica.hub.orchestrators.koica_orchestrator import (
     KoicaOrchestrator,
 )
-from app.domain.soccer.hub.orchestrators.soccer_orchestrator import (
+from domain.soccer.hub.orchestrators.soccer_orchestrator import (
     SoccerOrchestrator,
 )
 

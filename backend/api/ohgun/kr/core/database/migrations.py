@@ -12,9 +12,9 @@ from alembic.script import ScriptDirectory
 from alembic.runtime.migration import MigrationContext
 from sqlalchemy import create_engine, inspect
 
-from app.core.config import settings
+from core.config import settings
 # Soccer 모델들이 사용하는 Base import
-from app.domain.soccer.models.bases import Base
+from domain.soccer.models.bases import Base
 
 
 def get_alembic_config() -> Config:
@@ -108,9 +108,9 @@ from sqlalchemy import engine_from_config, pool
 from alembic import context
 
 # Base 메타데이터 import (모든 모델이 등록되도록)
-from app.domain.soccer.models.bases import Base
+from domain.soccer.models.bases import Base
 # Soccer 도메인 모델 import (테이블이 등록되도록)
-from app.domain.soccer.models.bases import players, schedules, stadium, teams
+from domain.soccer.models.bases import players, schedules, stadium, teams
 
 # Alembic Config 객체
 config = context.config
@@ -197,7 +197,7 @@ def create_soccer_tables_migration():
         alembic_cfg = get_alembic_config()
         
         # 모델 import (테이블이 Base.metadata에 등록되도록)
-        from app.domain.soccer.models.bases import players, schedules, stadium, teams
+        from domain.soccer.models.bases import players, schedules, stadium, teams
         
         print("=" * 60)
         print("📦 Soccer 테이블 마이그레이션 시작")
@@ -331,7 +331,7 @@ def apply_soccer_migrations() -> None:
         alembic_cfg = get_alembic_config()
 
         # 모델 import (테이블이 Base.metadata에 등록되도록)
-        from app.domain.soccer.models.bases import players, schedules, stadium, teams  # noqa: F401
+        from domain.soccer.models.bases import players, schedules, stadium, teams  # noqa: F401
 
         print("=" * 60)
         print("📦 Soccer 테이블 Alembic upgrade head 적용 시작")

@@ -9,7 +9,7 @@ from datetime import datetime
 from typing import List, Dict
 from collections import defaultdict
 
-from app.domain.evaluation.schemas.evaluation_schema import (
+from domain.evaluation.schemas.evaluation_schema import (
     RequirementMatch,
     CategoryEvaluation,
     EvaluationReport,

@@ -6,14 +6,15 @@
 import sys
 from pathlib import Path
 
-# 프로젝트 루트를 Python 경로에 추가
+# kr 모듈 루트를 Python 경로에 추가 (domain 등 import 해결용)
 project_root = Path(__file__).parent.absolute()
-if str(project_root) not in sys.path:
-    sys.path.insert(0, str(project_root))
+kr_root = project_root / "api" / "ohgun" / "kr"
+if str(kr_root) not in sys.path:
+    sys.path.insert(0, str(kr_root))
 
-from app.domain.admin.orchestrators.user_flow import UserFlow
-from app.domain.admin.services.user_service import UserService
-from app.domain.admin.agents.user_agent import UserAgent
+from domain.admin.orchestrators.user_flow import UserFlow
+from domain.admin.services.user_service import UserService
+from domain.admin.agents.user_agent import UserAgent
 
 
 def test_rule_based_service():

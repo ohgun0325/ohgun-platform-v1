@@ -3,8 +3,8 @@
 KoElectra와 Exaone을 FastMCP로 연결하여 사용하는 방법을 보여줍니다.
 """
 
-from app.domain.koica.mcp.server import create_mcp_server
-from app.domain.koica.services.policy_rule_classifier import PolicyRuleClassifier
+from domain.koica.mcp.server import create_mcp_server
+from domain.koica.services.policy_rule_classifier import PolicyRuleClassifier
 from artifacts.models.core.manager import ModelManager
 
 

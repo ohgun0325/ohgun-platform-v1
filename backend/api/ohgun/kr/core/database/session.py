@@ -6,7 +6,7 @@ from typing import AsyncGenerator
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker
 from sqlalchemy.pool import StaticPool
 
-from app.core.config import settings
+from core.config import settings
 
 def create_database_engine():
     """데이터베이스 엔진 생성"""
@@ -103,7 +103,7 @@ async def check_migration_status() -> bool:
     앱 시작 시 가볍게 체크하여 마이그레이션 미적용 시 명확한 에러
     """
     from sqlalchemy import text
-    from app.errors import MigrationNotAppliedError
+    from errors import MigrationNotAppliedError
     import logging
 
     logger = logging.getLogger(__name__)

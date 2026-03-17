@@ -8,7 +8,7 @@ from typing import Optional
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel, Field
 
-from app.domain.admin.orchestrators.user_flow import UserFlow
+from domain.admin.orchestrators.user_flow import UserFlow
 
 router = APIRouter(prefix="/api/v1/admin/user", tags=["admin", "user"])
 

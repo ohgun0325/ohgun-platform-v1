@@ -6,9 +6,10 @@ GPU 사용 가능 여부, QLoRA 설정, 필요한 패키지 설치 여부를 확
 import sys
 from pathlib import Path
 
-# 프로젝트 루트를 경로에 추가
+# kr 모듈 루트를 경로에 추가 (domain 등 import 해결용)
 project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root))
+kr_root = project_root / "api" / "ohgun" / "kr"
+sys.path.insert(0, str(kr_root))
 
 import os
 
@@ -235,7 +236,7 @@ def test_model_loading():
         return False
     
     try:
-        from app.domain.shared.services.exaone_trainer import ExaoneTrainer
+        from domain.shared.services.exaone_trainer import ExaoneTrainer
         
         project_root = Path(__file__).parent.parent
         model_path = project_root / "models" / "exaone-2.4b"

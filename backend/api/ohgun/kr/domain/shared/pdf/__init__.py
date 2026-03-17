@@ -4,20 +4,20 @@
 
 사용 예시:
     # 간단한 텍스트 추출
-    from app.domain.shared.pdf import extract_pdf_text
+    from domain.shared.pdf import extract_pdf_text
     text = extract_pdf_text("document.pdf")
     
     # 표 추출
-    from app.domain.shared.pdf import extract_pdf_tables
+    from domain.shared.pdf import extract_pdf_tables
     tables = extract_pdf_tables("document.pdf", page_num=1)
     
     # 컨텍스트 관리자 사용
-    from app.domain.shared.pdf import PDFContext
+    from domain.shared.pdf import PDFContext
     with PDFContext.create("pdfplumber") as pdf:
         pages = pdf.extract_pages("document.pdf")
 """
 
-from app.domain.shared.pdf.strategies import (
+from domain.shared.pdf.strategies import (
     PDFExtractionStrategy,
     PDFPlumberStrategy,
     PDFPlumberTableExtractor,
@@ -25,14 +25,14 @@ from app.domain.shared.pdf.strategies import (
     PyMuPDFImageExtractor,
 )
 
-from app.domain.shared.pdf.pdf_context import (
+from domain.shared.pdf.pdf_context import (
     PDFContext,
     PDFFactory,
     extract_pdf_text,
     extract_pdf_tables,
 )
 
-from app.domain.shared.pdf.key_value_extractor import (
+from domain.shared.pdf.key_value_extractor import (
     KeyValueExtractor,
     MultiKeywordExtractor,
     OCRKeyValueExtractor,
@@ -45,7 +45,7 @@ from app.domain.shared.pdf.key_value_extractor import (
     extract_from_ocr_simple,
 )
 
-from app.domain.shared.pdf.unified_extractor import (
+from domain.shared.pdf.unified_extractor import (
     UnifiedKeyValueExtractor,
     BatchExtractor,
     AdvancedExtractor,

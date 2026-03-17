@@ -1,8 +1,16 @@
 """labels가 제대로 생성되는지 확인하는 스크립트"""
 
 import json
+import sys
 from pathlib import Path
-from app.domain.shared.services.sft_dataset_builder import build_dataset_dict
+
+# kr 모듈 루트를 Python 경로에 추가 (domain 등 import 해결용)
+project_root = Path(__file__).parent.absolute()
+kr_root = project_root / "api" / "ohgun" / "kr"
+if str(kr_root) not in sys.path:
+    sys.path.insert(0, str(kr_root))
+
+from domain.shared.services.sft_dataset_builder import build_dataset_dict
 
 # 데이터 로드
 project_root = Path(__file__).parent

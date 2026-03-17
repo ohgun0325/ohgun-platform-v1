@@ -3,6 +3,6 @@
 KoElectra와 Exaone을 FastMCP로 연결하는 MCP 서버 및 툴 정의.
 """
 
-from app.domain.koica.mcp.server import create_mcp_server
+from domain.koica.mcp.server import create_mcp_server
 
 __all__ = ["create_mcp_server"]

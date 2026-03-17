@@ -8,9 +8,9 @@ from __future__ import annotations
 from asyncio import get_running_loop
 from typing import Any, Dict, Optional
 
-from app.domain.chat_hub.bases.chat_result import ChatResult
-from app.domain.chat_hub.orchestrators.rag_orchestrator import run_rag_chat
-from app.domain.chat_hub.services.chat_service import ChatService
+from domain.chat_hub.bases.chat_result import ChatResult
+from domain.chat_hub.orchestrators.rag_orchestrator import run_rag_chat
+from domain.chat_hub.services.chat_service import ChatService
 
 
 class GeneralOrchestrator:

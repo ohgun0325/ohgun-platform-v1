@@ -7,18 +7,18 @@ from __future__ import annotations
 
 from typing import Optional
 
-from app.domain.rfp.schemas import RfPDocument
-from app.domain.rfp.services import RfPService
-from app.domain.proposal.schemas import ProposalDocument
-from app.domain.proposal.services import ProposalService
-from app.domain.evaluation.schemas.evaluation_schema import (
+from domain.rfp.schemas import RfPDocument
+from domain.rfp.services import RfPService
+from domain.proposal.schemas import ProposalDocument
+from domain.proposal.services import ProposalService
+from domain.evaluation.schemas.evaluation_schema import (
     EvaluationRequest,
     EvaluationResponse,
     EvaluationReport,
 )
-from app.domain.evaluation.services.matcher import Matcher
-from app.domain.evaluation.services.rule_validator import RuleValidator
-from app.domain.evaluation.services.report_generator import ReportGenerator
+from domain.evaluation.services.matcher import Matcher
+from domain.evaluation.services.rule_validator import RuleValidator
+from domain.evaluation.services.report_generator import ReportGenerator
 
 
 class EvaluationOrchestrator:

@@ -8,7 +8,7 @@
 - 섹션 구조화
 """
 
-from app.domain.proposal.schemas import (
+from domain.proposal.schemas import (
     SectionType,
     ProposalSection,
     TableOfContents,
@@ -19,11 +19,11 @@ from app.domain.proposal.schemas import (
     ProposalParsingResponse,
 )
 
-from app.domain.proposal.parsers import (
+from domain.proposal.parsers import (
     ProposalPDFParser,
 )
 
-from app.domain.proposal.services import (
+from domain.proposal.services import (
     ProposalService,
 )
 

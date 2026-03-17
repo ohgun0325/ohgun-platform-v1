@@ -7,8 +7,8 @@ from __future__ import annotations
 
 from typing import Any, Dict, Optional
 
-from app.domain.chat_hub.bases.chat_result import ChatResult
-from app.domain.koica.hub.orchestrators.term_orchestrator import TermOrchestrator
+from domain.chat_hub.bases.chat_result import ChatResult
+from domain.koica.hub.orchestrators.term_orchestrator import TermOrchestrator
 
 
 class TermAgent:

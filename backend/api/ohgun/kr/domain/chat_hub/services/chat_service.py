@@ -5,7 +5,7 @@ Gemini API 호출 로직을 캡슐화합니다.
 
 from typing import Optional, TYPE_CHECKING
 
-from app.core.llm.gemini import get_chat_model
+from core.llm.gemini import get_chat_model
 from langchain_core.messages import HumanMessage
 
 if TYPE_CHECKING:

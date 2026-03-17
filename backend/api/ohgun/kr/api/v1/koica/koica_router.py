@@ -6,8 +6,8 @@
 
 from fastapi import APIRouter
 
-from app.api.v1.koica.chat_router import router as koica_chat_router
-from app.api.v1.koica.report_router import router as koica_report_router
+from api.v1.koica.chat_router import router as koica_chat_router
+from api.v1.koica.report_router import router as koica_report_router
 
 router = APIRouter(prefix="/api/v1/koica", tags=["koica"])
 

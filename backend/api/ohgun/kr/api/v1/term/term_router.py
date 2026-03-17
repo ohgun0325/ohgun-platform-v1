@@ -8,8 +8,8 @@ from typing import Optional
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel, Field
 
-from app.domain.terms.models.oda_term import ODATermEntry
-from app.domain.terms.services.term_service import TermService
+from domain.terms.models.oda_term import ODATermEntry
+from domain.terms.services.term_service import TermService
 
 router = APIRouter(prefix="/api/v1/term", tags=["term"])
 

@@ -24,8 +24,9 @@ from typing import List, Tuple
 
 # 프로젝트 루트
 _PROJECT_ROOT = Path(__file__).resolve().parent.parent
-if str(_PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(_PROJECT_ROOT))
+_KR_ROOT = _PROJECT_ROOT / "api" / "ohgun" / "kr"
+if str(_KR_ROOT) not in sys.path:
+    sys.path.insert(0, str(_KR_ROOT))
 
 
 def safe_stem(name: str) -> str:
@@ -157,8 +158,8 @@ def main() -> None:
     import os
     _yolo_path = os.environ.get("YOLO_MODEL_PATH", "models/stamp_detector/best.pt")
     _conf_thres = float(os.environ.get("CONF_THRES", "0.25"))
-    from app.domain.detect.services.pdf_renderer import render_pdf_to_images
-    from app.domain.detect.services.stamp_detector import StampDetector
+    from domain.detect.services.pdf_renderer import render_pdf_to_images
+    from domain.detect.services.stamp_detector import StampDetector
 
     model_path = Path(_yolo_path)
     if not model_path.is_absolute():

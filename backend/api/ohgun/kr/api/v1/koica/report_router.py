@@ -5,7 +5,7 @@ PDF 업로드 → 훈련된 Exaone(LoRA)로 요약문 생성.
 
 from fastapi import APIRouter, File, HTTPException, UploadFile
 
-from app.domain.koica.services.report_summary_service import summarize_pdf_bytes
+from domain.koica.services.report_summary_service import summarize_pdf_bytes
 
 router = APIRouter(prefix="/report", tags=["koica-report"])
 

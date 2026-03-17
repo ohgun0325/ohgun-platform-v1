@@ -9,7 +9,7 @@ RfP(Request for Proposal) 문서 처리를 담당합니다.
 - 요구사항 저장 및 조회
 """
 
-from app.domain.rfp.schemas import (
+from domain.rfp.schemas import (
     RequirementType,
     RequirementPriority,
     Requirement,
@@ -20,17 +20,17 @@ from app.domain.rfp.schemas import (
     RequirementExtractionResponse,
 )
 
-from app.domain.rfp.parsers import (
+from domain.rfp.parsers import (
     RfPPDFParser,
     RequirementExtractor,
 )
 
-from app.domain.rfp.repositories import (
+from domain.rfp.repositories import (
     RequirementRepository,
     RfPDocumentRepository,
 )
 
-from app.domain.rfp.services import (
+from domain.rfp.services import (
     RfPService,
 )
 

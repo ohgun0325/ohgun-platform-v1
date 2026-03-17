@@ -4,8 +4,8 @@ from typing import Optional, Union
 
 import psycopg2
 
-from app.core.embeddings import generate_embeddings
-from app.core.vectorstore import query_similar_documents
+from core.embeddings import generate_embeddings
+from core.vectorstore import query_similar_documents
 from artifacts.models.interfaces.base import BaseLLMModel
 
 try:

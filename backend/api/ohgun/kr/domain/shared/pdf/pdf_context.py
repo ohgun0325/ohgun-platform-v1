@@ -17,7 +17,7 @@ from __future__ import annotations
 from typing import Literal, Union
 from pathlib import Path
 
-from app.domain.shared.pdf.strategies import (
+from domain.shared.pdf.strategies import (
     PDFExtractionStrategy,
     PDFPlumberStrategy,
     PyMuPDFStrategy,

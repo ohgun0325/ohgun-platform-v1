@@ -1,6 +1,6 @@
 """RfP 도메인 - 스키마."""
 
-from app.domain.rfp.schemas.rfp_schema import (
+from domain.rfp.schemas.rfp_schema import (
     RequirementType,
     RequirementPriority,
     Requirement,

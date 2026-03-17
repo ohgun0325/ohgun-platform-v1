@@ -6,16 +6,16 @@ RfP 평가 시스템 API를 제공합니다.
 from fastapi import APIRouter, File, UploadFile, HTTPException, Form
 from typing import Optional
 
-from app.domain.rfp import (
+from domain.rfp import (
     RfPService,
     RequirementExtractionRequest,
     RequirementExtractionResponse,
 )
-from app.domain.proposal import (
+from domain.proposal import (
     ProposalService,
     ProposalParsingResponse,
 )
-from app.domain.evaluation import (
+from domain.evaluation import (
     EvaluationOrchestrator,
     EvaluationRequest,
     EvaluationResponse,

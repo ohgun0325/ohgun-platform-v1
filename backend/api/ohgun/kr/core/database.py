@@ -1,6 +1,6 @@
 """
 데이터베이스 연결 및 세션 관리 (호환성 레이어)
-새로운 구조(app.core.database)를 사용하도록 리다이렉트
+새로운 구조(core.database)를 사용하도록 리다이렉트
 기존 코드와의 호환성을 위해 유지
 """
 import time
@@ -9,10 +9,10 @@ from typing import Optional
 import psycopg2
 from pgvector.psycopg2 import register_vector
 
-from app.core.config import settings
+from core.config import settings
 
 # 새로운 구조로 리다이렉트 (루즈한 결합도 유지)
-from app.core.database import (
+from core.database import (
     Base,
     TimestampMixin,
     SoftDeleteMixin,

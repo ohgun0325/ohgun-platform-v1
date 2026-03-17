@@ -9,14 +9,14 @@ try:
 except ImportError:
     FastMCP = None  # type: ignore
 
-from app.domain.koica.mcp.tools import (
+from domain.koica.mcp.tools import (
     ExaoneTool,
     FileSystemTool,
     KoElectraTool,
     OdaTermTool,
 )
-from app.domain.koica.services.policy_rule_classifier import PolicyRuleClassifier
-from app.domain.terms.services.term_service import TermService
+from domain.koica.services.policy_rule_classifier import PolicyRuleClassifier
+from domain.terms.services.term_service import TermService
 from artifacts.models.interfaces.base import BaseLLMModel
 
 

@@ -13,15 +13,15 @@ from fastapi import APIRouter, File, HTTPException, Request, UploadFile
 from PIL import Image
 import io
 
-from app.core.config import settings
-from app.domain.detect.schemas.detect_schema import (
+from core.config import settings
+from domain.detect.schemas.detect_schema import (
     DetectionItem,
     DetectResponse,
     PageResult,
     SummaryResult,
 )
-from app.domain.detect.services.pdf_renderer import render_pdf_to_images
-from app.domain.detect.services.stamp_detector import StampDetector
+from domain.detect.services.pdf_renderer import render_pdf_to_images
+from domain.detect.services.stamp_detector import StampDetector
 
 router = APIRouter(prefix="/detect", tags=["detect"])
 

@@ -6,8 +6,8 @@ KOICA 도메인 내 '채팅' 기능 전용 라우터.
 from fastapi import APIRouter, HTTPException, Request
 from typing import Optional, Union
 
-from app.core.chat_chain import chat_with_ai
-from app.schemas import ChatRequest, ChatResponse
+from core.chat_chain import chat_with_ai
+from schemas import ChatRequest, ChatResponse
 from artifacts.models.interfaces.base import BaseLLMModel
 
 try:

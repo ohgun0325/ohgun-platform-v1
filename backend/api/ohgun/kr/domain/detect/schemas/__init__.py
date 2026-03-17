@@ -1,4 +1,4 @@
-from app.domain.detect.schemas.detect_schema import (
+from domain.detect.schemas.detect_schema import (
     DetectionItem,
     DetectResponse,
     PageResult,

@@ -23,10 +23,11 @@ from typing import Any, List, Tuple
 
 # 프로젝트 루트를 path에 추가 (스크립트 위치에 관계없이 app import 가능하도록)
 _PROJECT_ROOT = Path(__file__).resolve().parent.parent
-if str(_PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(_PROJECT_ROOT))
+_KR_ROOT = _PROJECT_ROOT / "api" / "ohgun" / "kr"
+if str(_KR_ROOT) not in sys.path:
+    sys.path.insert(0, str(_KR_ROOT))
 
-from app.domain.detect.services.pdf_renderer import render_pdf_to_images
+from domain.detect.services.pdf_renderer import render_pdf_to_images
 
 
 def safe_stem(pdf_path: Path) -> str:

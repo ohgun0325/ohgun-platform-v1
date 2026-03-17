@@ -21,7 +21,7 @@ try:
 except ImportError:
     raise ImportError("PyMuPDF가 설치되지 않았습니다: pip install PyMuPDF")
 
-from app.domain.shared.pdf.key_value_extractor import (
+from domain.shared.pdf.key_value_extractor import (
     KeyValueExtractor,
     MultiKeywordExtractor,
     OCRKeyValueExtractor,
@@ -47,7 +47,7 @@ class UnifiedKeyValueExtractor:
     4. 폴백: PyMuPDF 실패 시 자동으로 OCR 시도
     
     Example:
-        >>> from app.domain.shared.ocr.easyocr_reader import EasyOCRReader
+        >>> from domain.shared.ocr.easyocr_reader import EasyOCRReader
         >>> 
         >>> ocr_reader = EasyOCRReader(gpu=True)
         >>> extractor = UnifiedKeyValueExtractor(ocr_reader=ocr_reader)
@@ -319,7 +319,7 @@ def extract_from_any_pdf(
         추출 결과 딕셔너리
     
     Example:
-        >>> from app.domain.shared.ocr.easyocr_reader import EasyOCRReader
+        >>> from domain.shared.ocr.easyocr_reader import EasyOCRReader
         >>> 
         >>> ocr = EasyOCRReader(gpu=True)
         >>> fields = {
@@ -573,7 +573,7 @@ class AdvancedExtractor:
             page = doc[page_num - 1]
             raw_words = page.get_text("words")
             
-            from app.domain.shared.pdf.key_value_extractor import Word, BBox
+            from domain.shared.pdf.key_value_extractor import Word, BBox
             
             words = [
                 Word(
@@ -692,7 +692,7 @@ def create_production_extractor(
     
     if enable_ocr:
         try:
-            from app.domain.shared.ocr.easyocr_reader import EasyOCRReader
+            from domain.shared.ocr.easyocr_reader import EasyOCRReader
             ocr_reader = EasyOCRReader(languages=['ko', 'en'], gpu=gpu, verbose=False)
             logger.info("[Production Extractor] EasyOCR 초기화 완료 (GPU: %s)", gpu)
         except Exception as e:

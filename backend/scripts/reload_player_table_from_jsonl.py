@@ -30,11 +30,11 @@ def main() -> int:
         return 1
 
     try:
-        from app.domain.soccer.repositories.player_repository import (
+        from domain.soccer.repositories.player_repository import (
             PlayerRepository,
             MissingTeamError,
         )
-        from app.domain.soccer.services.player_embedding_service import (
+        from domain.soccer.services.player_embedding_service import (
             index_player_embeddings,
         )
     except ImportError as e:

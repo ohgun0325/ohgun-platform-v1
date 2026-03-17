@@ -7,8 +7,8 @@ from langgraph.graph import StateGraph, END
 from langgraph.graph.message import add_messages
 from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
 
-from app.core.embeddings import generate_embeddings
-from app.core.vectorstore import query_similar_documents
+from core.embeddings import generate_embeddings
+from core.vectorstore import query_similar_documents
 from artifacts.models.interfaces.base import BaseLLMModel
 
 # Gemini는 선택적 지원 (fallback)

@@ -9,7 +9,7 @@ RfP와 제안서를 비교 평가합니다.
 - 평가 보고서 생성
 """
 
-from app.domain.evaluation.schemas import (
+from domain.evaluation.schemas import (
     MatchStatus,
     EvaluationScore,
     RequirementMatch,
@@ -20,13 +20,13 @@ from app.domain.evaluation.schemas import (
     RuleValidationResult,
 )
 
-from app.domain.evaluation.services import (
+from domain.evaluation.services import (
     Matcher,
     RuleValidator,
     ReportGenerator,
 )
 
-from app.domain.evaluation.orchestrators import (
+from domain.evaluation.orchestrators import (
     EvaluationOrchestrator,
 )
 

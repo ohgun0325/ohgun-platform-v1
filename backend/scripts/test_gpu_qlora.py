@@ -7,9 +7,10 @@ import sys
 from pathlib import Path
 
 project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root))
+kr_root = project_root / "api" / "ohgun" / "kr"
+sys.path.insert(0, str(kr_root))
 
-from app.domain.shared.services.exaone_trainer import ExaoneTrainer
+from domain.shared.services.exaone_trainer import ExaoneTrainer
 import torch
 
 print("=" * 60)

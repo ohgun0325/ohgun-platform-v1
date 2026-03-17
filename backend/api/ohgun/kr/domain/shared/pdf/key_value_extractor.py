@@ -24,7 +24,7 @@ from dataclasses import dataclass
 from enum import Enum
 from pathlib import Path
 
-from app.domain.shared.bases.semantic_matcher import get_default_semantic_matcher
+from domain.shared.bases.semantic_matcher import get_default_semantic_matcher
 import logging
 
 logger = logging.getLogger(__name__)

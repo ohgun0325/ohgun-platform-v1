@@ -22,8 +22,8 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 
 import pandas as pd
 
-from app.domain.shared.bases.semantic_matcher import get_default_semantic_matcher
-from app.domain.shared.ms_excel.excel_reader import PandasExcelReader
+from domain.shared.bases.semantic_matcher import get_default_semantic_matcher
+from domain.shared.ms_excel.excel_reader import PandasExcelReader
 
 logger = logging.getLogger(__name__)
 

@@ -94,7 +94,7 @@ class OcrWithLlmResponse(BaseModel):
 
 def _init_ocr_reader():
     """EasyOCR Reader 싱글톤 생성 (스레드에서 호출)."""
-    from app.domain.shared.ocr import EasyOCRReader
+    from domain.shared.ocr import EasyOCRReader
     return EasyOCRReader(languages=["ko", "en"], gpu=True)
 
 
@@ -243,7 +243,7 @@ async def run_ocr_with_llm(
         # 2) 아니라면 (예: Exaone 등) 무시하고 Gemini를 직접 로드
         if llm_model is None:
             try:
-                from app.core.llm.gemini import get_chat_model as get_gemini
+                from core.llm.gemini import get_chat_model as get_gemini
 
                 gemini = get_gemini()
                 if gemini:
@@ -262,7 +262,7 @@ async def run_ocr_with_llm(
         "예" if llm_model else "아니오(모델 없음/미로드)",
     )
     try:
-        from app.domain.shared.ocr.ocr_llm_pipeline import run_pipeline
+        from domain.shared.ocr.ocr_llm_pipeline import run_pipeline
         result: Dict[str, Any] = await asyncio.to_thread(
             run_pipeline, reader, image_bytes, llm_model
         )

@@ -15,7 +15,7 @@ from typing import Any, Dict, List, Optional
 from fastapi import APIRouter, File, HTTPException, UploadFile
 from pydantic import BaseModel
 
-from app.domain.shared.ms_excel.field_extractor import (
+from domain.shared.ms_excel.field_extractor import (
     extract_fields_from_excel,
     get_standard_excel_field_definitions,
 )
@@ -210,14 +210,14 @@ async def extract_excel_and_correct(
         gemini_model = None
         if use_gemini:
             try:
-                from app.core.llm.gemini import get_chat_model
+                from core.llm.gemini import get_chat_model
                 gemini_model = get_chat_model()
                 if gemini_model is None:
                     logger.warning("[Excel API] Gemini 로드 실패 → 보정 없이 추출만 수행")
             except Exception as e:
                 logger.warning("[Excel API] Gemini 로드 예외: %s → 보정 없이 추출만 수행", e)
 
-        from app.domain.shared.ms_excel.excel_gemini_pipeline import (
+        from domain.shared.ms_excel.excel_gemini_pipeline import (
             run_excel_extract_and_correct,
         )
 

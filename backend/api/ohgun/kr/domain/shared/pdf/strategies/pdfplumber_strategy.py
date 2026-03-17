@@ -16,7 +16,7 @@ try:
 except ImportError:
     raise ImportError("pdfplumber가 설치되지 않았습니다. pip install pdfplumber")
 
-from app.domain.shared.pdf.strategies.pdf_strategy import PDFExtractionStrategy
+from domain.shared.pdf.strategies.pdf_strategy import PDFExtractionStrategy
 
 
 class PDFPlumberStrategy(PDFExtractionStrategy):

@@ -1,3 +1,3 @@
-from app.api.v1.detect.detect_router import router
+from api.v1.detect.detect_router import router
 
 __all__ = ["router"]

@@ -38,8 +38,8 @@ def test_render_pdf_to_images_mock():
     mock_fitz.Matrix.return_value = MagicMock()
 
     with patch.dict(sys.modules, {"fitz": mock_fitz}):
-        with patch("app.domain.detect.services.pdf_renderer._pixmap_to_pil", return_value=fake_img):
-            from app.domain.detect.services.pdf_renderer import render_pdf_to_images
+        with patch("domain.detect.services.pdf_renderer._pixmap_to_pil", return_value=fake_img):
+            from domain.detect.services.pdf_renderer import render_pdf_to_images
             pdf_bytes = b"%PDF-1.4 dummy"
             images = render_pdf_to_images(pdf_bytes, dpi=250, max_pages=50)
             assert len(images) == 2
@@ -50,7 +50,7 @@ def test_detect_endpoint_rejects_non_pdf():
     """POST /api/v1/detect 에 비PDF 업로드 시 415."""
     # 앱을 직접 생성하고 detect_router만 포함 (lifespan 없이, stamp_detector 없음)
     from fastapi import FastAPI
-    from app.api.v1.detect.detect_router import router as detect_router
+    from api.v1.detect.detect_router import router as detect_router
 
     app = FastAPI()
     app.include_router(detect_router, prefix="/api/v1")
@@ -67,7 +67,7 @@ def test_detect_endpoint_rejects_non_pdf():
 def test_detect_endpoint_503_when_model_not_loaded():
     """모델 미로드 시 PDF 업로드해도 503."""
     from fastapi import FastAPI
-    from app.api.v1.detect.detect_router import router as detect_router
+    from api.v1.detect.detect_router import router as detect_router
 
     app = FastAPI()
     app.include_router(detect_router, prefix="/api/v1")

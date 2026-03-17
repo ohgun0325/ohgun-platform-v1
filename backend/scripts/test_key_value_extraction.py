@@ -12,9 +12,10 @@ import time
 from pathlib import Path
 from typing import Dict, Any
 
-# 프로젝트 루트를 sys.path에 추가
+# kr 모듈 루트를 sys.path에 추가 (domain 등 import 해결용)
 project_root = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(project_root))
+kr_root = project_root / "api" / "ohgun" / "kr"
+sys.path.insert(0, str(kr_root))
 
 
 def create_test_pdf_structured():
@@ -67,7 +68,7 @@ def test_basic_extraction():
     print("테스트 1: 기본 Key-Value 추출")
     print("="*60)
     
-    from app.domain.shared.pdf.key_value_extractor import extract_simple
+    from domain.shared.pdf.key_value_extractor import extract_simple
     
     # 테스트 PDF 생성
     test_pdf = create_test_pdf_structured()
@@ -103,7 +104,7 @@ def test_detailed_extraction():
     print("테스트 2: 상세 추출 (bbox, confidence 포함)")
     print("="*60)
     
-    from app.domain.shared.pdf.key_value_extractor import extract_with_details
+    from domain.shared.pdf.key_value_extractor import extract_with_details
     
     test_pdf = project_root / "data" / "test_kv_extraction.pdf"
     if not test_pdf.exists():
@@ -141,7 +142,7 @@ def test_unified_extractor():
     print("테스트 3: 통합 Extractor (자동 PDF 타입 감지)")
     print("="*60)
     
-    from app.domain.shared.pdf.unified_extractor import (
+    from domain.shared.pdf.unified_extractor import (
         UnifiedKeyValueExtractor,
         get_standard_field_definitions,
     )
@@ -149,7 +150,7 @@ def test_unified_extractor():
     # OCR 리더 초기화 (옵션)
     ocr_reader = None
     try:
-        from app.domain.shared.ocr.easyocr_reader import EasyOCRReader
+        from domain.shared.ocr.easyocr_reader import EasyOCRReader
         ocr_reader = EasyOCRReader(gpu=True, verbose=False)
         print("✓ EasyOCR 초기화 완료 (GPU 모드)")
     except Exception as e:
@@ -190,8 +191,8 @@ def test_ocr_extraction():
     print("="*60)
     
     try:
-        from app.domain.shared.ocr.easyocr_reader import EasyOCRReader
-        from app.domain.shared.pdf.key_value_extractor import extract_from_ocr_simple
+        from domain.shared.ocr.easyocr_reader import EasyOCRReader
+        from domain.shared.pdf.key_value_extractor import extract_from_ocr_simple
     except ImportError as e:
         print(f"필요한 모듈을 import할 수 없습니다: {e}")
         return
@@ -240,7 +241,7 @@ def test_batch_extraction():
     print("테스트 5: 배치 추출 (여러 페이지)")
     print("="*60)
     
-    from app.domain.shared.pdf.unified_extractor import (
+    from domain.shared.pdf.unified_extractor import (
         UnifiedKeyValueExtractor,
         BatchExtractor,
         get_standard_field_definitions,
@@ -284,7 +285,7 @@ def benchmark_extraction():
     print("벤치마크: 추출 성능 측정")
     print("="*60)
     
-    from app.domain.shared.pdf.key_value_extractor import KeyValueExtractor
+    from domain.shared.pdf.key_value_extractor import KeyValueExtractor
     
     test_pdf = project_root / "data" / "test_kv_extraction.pdf"
     if not test_pdf.exists():
@@ -325,7 +326,7 @@ def example_usage_structured_pdf():
     print("예제 1: Structured PDF 추출")
     print("="*60)
     
-    from app.domain.shared.pdf.unified_extractor import extract_from_any_pdf
+    from domain.shared.pdf.unified_extractor import extract_from_any_pdf
     
     # 실제 PDF 경로 (사용자가 준비)
     pdf_path = input("\nPDF 파일 경로를 입력하세요 (엔터 = 테스트 PDF 사용): ").strip()
@@ -386,8 +387,8 @@ def example_usage_with_ocr():
     print("="*60)
     
     try:
-        from app.domain.shared.ocr.easyocr_reader import EasyOCRReader
-        from app.domain.shared.pdf.unified_extractor import (
+        from domain.shared.ocr.easyocr_reader import EasyOCRReader
+        from domain.shared.pdf.unified_extractor import (
             create_production_extractor,
             get_standard_field_definitions,
         )
@@ -436,7 +437,7 @@ def example_koica_proposal():
     print("예제 3: KOICA 제안서 필드 추출")
     print("="*60)
     
-    from app.domain.shared.pdf.unified_extractor import (
+    from domain.shared.pdf.unified_extractor import (
         extract_from_any_pdf,
         get_koica_proposal_field_definitions,
     )
@@ -455,7 +456,7 @@ def example_koica_proposal():
     # OCR 리더 (옵션)
     ocr_reader = None
     try:
-        from app.domain.shared.ocr.easyocr_reader import EasyOCRReader
+        from domain.shared.ocr.easyocr_reader import EasyOCRReader
         ocr_reader = EasyOCRReader(gpu=True, verbose=False)
     except Exception:
         pass
@@ -556,7 +557,7 @@ def show_best_practices():
    a. PDF 타입 미리 알고 있는 경우:
    ```python
    # Structured PDF만 처리
-   from app.domain.shared.pdf.key_value_extractor import extract_with_details
+   from domain.shared.pdf.key_value_extractor import extract_with_details
    result = extract_with_details(pdf_path, page_num, field_defs)
    ```
    
@@ -674,7 +675,7 @@ def show_best_practices():
     
     b. 방향별 가중치 커스터마이징:
     ```python
-    from app.domain.shared.pdf.key_value_extractor import Direction
+    from domain.shared.pdf.key_value_extractor import Direction
     
     # 수직 레이아웃이 많은 경우
     custom_weights = {

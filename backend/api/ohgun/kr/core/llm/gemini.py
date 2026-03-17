@@ -2,7 +2,7 @@
 
 from typing import Optional
 
-from app.core.config import settings
+from core.config import settings
 
 try:
     from langchain_google_genai import (

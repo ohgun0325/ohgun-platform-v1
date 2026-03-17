@@ -80,7 +80,7 @@ class UserAgent:
         # Fallback: Gemini 사용
         if ChatGoogleGenerativeAI:
             try:
-                from app.core.llm.gemini import get_chat_model
+                from core.llm.gemini import get_chat_model
 
                 self._model = get_chat_model()
                 print("✅ [정책 기반] Gemini 모델 사용 (Fallback)")

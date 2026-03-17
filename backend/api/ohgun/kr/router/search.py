@@ -2,9 +2,9 @@
 
 from fastapi import APIRouter, HTTPException, Request
 
-from app.core.embeddings import generate_embeddings
-from app.core.vectorstore import query_similar_documents
-from app.schemas import SearchRequest, SearchResponse, SearchResult
+from core.embeddings import generate_embeddings
+from core.vectorstore import query_similar_documents
+from schemas import SearchRequest, SearchResponse, SearchResult
 
 router = APIRouter(tags=["search"])
 

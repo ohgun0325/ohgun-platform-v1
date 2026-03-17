@@ -12,9 +12,9 @@ from sqlalchemy import engine_from_config, pool
 from alembic import context
 
 # Base 메타데이터 import (모든 모델이 등록되도록)
-from app.domain.soccer.models.bases import Base
+from domain.soccer.models.bases import Base
 # Soccer 도메인 모델 import (테이블이 등록되도록)
-from app.domain.soccer.models.bases import (
+from domain.soccer.models.bases import (
     player_embeddings,
     players,
     schedules,

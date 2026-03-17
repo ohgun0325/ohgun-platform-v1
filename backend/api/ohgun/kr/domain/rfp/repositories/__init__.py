@@ -1,6 +1,6 @@
 """RfP 도메인 - 저장소."""
 
-from app.domain.rfp.repositories.requirement_repository import (
+from domain.rfp.repositories.requirement_repository import (
     RequirementRepository,
     RfPDocumentRepository,
 )

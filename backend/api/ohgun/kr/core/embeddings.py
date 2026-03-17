@@ -2,7 +2,7 @@
 
 from typing import List
 
-from app.core.config import settings
+from core.config import settings
 
 
 def get_embedding_dimension() -> int:
@@ -17,7 +17,7 @@ def get_embedding_dimension() -> int:
 
     # Gemini API 확인 (fallback)
     try:
-        from app.core.gemini import test_gemini_api
+        from core.gemini import test_gemini_api
         dim = test_gemini_api()
         if dim > 0:
             return dim
@@ -135,7 +135,7 @@ def generate_embeddings(texts: List[str], dimension: int = 2560) -> List[List[fl
 
     # Fallback: Gemini API 사용 (선택사항)
     try:
-        from app.core.gemini import get_embeddings_model
+        from core.gemini import get_embeddings_model
         embeddings_model = get_embeddings_model()
         if embeddings_model:
             try:

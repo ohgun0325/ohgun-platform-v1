@@ -11,11 +11,12 @@ os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 import sys
 from pathlib import Path
 
-# 프로젝트 루트를 경로에 추가
+# kr 모듈 루트를 경로에 추가 (domain 등 import 해결용)
 project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root))
+kr_root = project_root / "api" / "ohgun" / "kr"
+sys.path.insert(0, str(kr_root))
 
-from app.domain.shared.services.exaone_trainer import ExaoneTrainer
+from domain.shared.services.exaone_trainer import ExaoneTrainer
 
 
 def main():

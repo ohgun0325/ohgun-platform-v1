@@ -13,9 +13,10 @@ if sys.platform == 'win32':
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
-# 프로젝트 루트를 sys.path에 추가
+# kr 모듈 루트를 sys.path에 추가 (domain 등 import 해결용)
 project_root = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(project_root))
+kr_root = project_root / "api" / "ohgun" / "kr"
+sys.path.insert(0, str(kr_root))
 
 
 def test_imports():
@@ -25,7 +26,7 @@ def test_imports():
     print("="*60)
     
     try:
-        from app.domain.shared.pdf.key_value_extractor import (
+        from domain.shared.pdf.key_value_extractor import (
             KeyValueExtractor,
             BBox,
             Word,
@@ -37,7 +38,7 @@ def test_imports():
         return False
     
     try:
-        from app.domain.shared.pdf.unified_extractor import (
+        from domain.shared.pdf.unified_extractor import (
             UnifiedKeyValueExtractor,
             extract_from_any_pdf,
             create_production_extractor,
@@ -48,7 +49,7 @@ def test_imports():
         return False
     
     try:
-        from app.domain.shared.pdf import (
+        from domain.shared.pdf import (
             extract_simple,
             extract_from_any_pdf,
             KeyValueExtractor,
@@ -68,7 +69,7 @@ def test_bbox_operations():
     print("테스트 2: BBox 클래스 동작")
     print("="*60)
     
-    from app.domain.shared.pdf.key_value_extractor import BBox
+    from domain.shared.pdf.key_value_extractor import BBox
     
     # BBox 생성
     bbox1 = BBox(0, 0, 100, 50)
@@ -99,7 +100,7 @@ def test_direction_calculation():
     print("테스트 3: 방향 판단")
     print("="*60)
     
-    from app.domain.shared.pdf.key_value_extractor import BBox, KeyValueExtractor, Direction
+    from domain.shared.pdf.key_value_extractor import BBox, KeyValueExtractor, Direction
     
     extractor = KeyValueExtractor()
     
@@ -126,7 +127,7 @@ def test_score_calculation():
     print("테스트 4: 점수 계산")
     print("="*60)
     
-    from app.domain.shared.pdf.key_value_extractor import BBox, KeyValueExtractor, Direction
+    from domain.shared.pdf.key_value_extractor import BBox, KeyValueExtractor, Direction
     
     extractor = KeyValueExtractor()
     
@@ -214,7 +215,7 @@ def test_basic_extraction():
         return False
     
     try:
-        from app.domain.shared.pdf import extract_simple
+        from domain.shared.pdf import extract_simple
         
         keywords = {
             "name": ["성명"],
@@ -257,7 +258,7 @@ def test_detailed_extraction():
         return False
     
     try:
-        from app.domain.shared.pdf import extract_with_details
+        from domain.shared.pdf import extract_with_details
         
         field_defs = {
             "name": {

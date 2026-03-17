@@ -6,8 +6,8 @@ import os
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from app.domain.koica.services.policy_rule_classifier import PolicyRuleClassifier
-from app.domain.terms.services.term_service import TermService
+from domain.koica.services.policy_rule_classifier import PolicyRuleClassifier
+from domain.terms.services.term_service import TermService
 from artifacts.models.interfaces.base import BaseLLMModel
 
 

@@ -5,8 +5,8 @@
 
 from typing import Dict, Any, Optional, TYPE_CHECKING
 
-from app.domain.admin.services.user_service import UserService
-from app.domain.admin.agents.user_agent import UserAgent
+from domain.admin.services.user_service import UserService
+from domain.admin.agents.user_agent import UserAgent
 
 if TYPE_CHECKING:
     from artifacts.models.interfaces.base import BaseLLMModel

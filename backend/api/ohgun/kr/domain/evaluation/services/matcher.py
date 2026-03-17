@@ -7,9 +7,9 @@ from __future__ import annotations
 
 from typing import List, Tuple
 
-from app.domain.rfp.schemas import Requirement
-from app.domain.proposal.schemas import ProposalSection, ProposalDocument
-from app.domain.evaluation.schemas.evaluation_schema import (
+from domain.rfp.schemas import Requirement
+from domain.proposal.schemas import ProposalSection, ProposalDocument
+from domain.evaluation.schemas.evaluation_schema import (
     RequirementMatch,
     MatchStatus,
     EvaluationScore,

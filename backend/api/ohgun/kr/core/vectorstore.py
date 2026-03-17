@@ -4,8 +4,8 @@ from typing import List, Tuple
 
 import psycopg2
 
-from app.core.database import get_db_connection
-from app.core.embeddings import generate_embeddings, get_embedding_dimension
+from core.database import get_db_connection
+from core.embeddings import generate_embeddings, get_embedding_dimension
 
 
 def setup_pgvector() -> tuple[psycopg2.extensions.connection, int]:
@@ -146,7 +146,7 @@ def query_similar_documents(
     except (psycopg2.InterfaceError, psycopg2.OperationalError, AttributeError):
         # 연결이 닫혔거나 문제가 있으면 새 연결 생성
         # (스레드에서 실행될 때 연결이 닫힐 수 있음)
-        from app.core.database import get_db_connection
+        from core.database import get_db_connection
         conn = get_db_connection(register_vector_extension=True)
 
     cur = conn.cursor()

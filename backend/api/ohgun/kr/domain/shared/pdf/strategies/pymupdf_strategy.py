@@ -22,7 +22,7 @@ try:
 except ImportError:
     PIL_Image = None
 
-from app.domain.shared.pdf.strategies.pdf_strategy import PDFExtractionStrategy
+from domain.shared.pdf.strategies.pdf_strategy import PDFExtractionStrategy
 
 
 class PyMuPDFStrategy(PDFExtractionStrategy):

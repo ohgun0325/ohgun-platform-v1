@@ -2,7 +2,7 @@
 
 from fastapi import APIRouter, Request
 
-from app.schemas import HealthResponse
+from schemas import HealthResponse
 
 router = APIRouter(tags=["health"])
 
@@ -20,7 +20,7 @@ async def health_check(request: Request) -> HealthResponse:
     qlora_service = getattr(request.app.state, "qlora_service", None)  # QLoRA 서비스 확인
 
     # Check model type
-    from app.models.base import BaseLLMModel
+    from models.base import BaseLLMModel
     model_type = None
     if qlora_service and qlora_service.is_loaded:
         model_type = "QLoRA"

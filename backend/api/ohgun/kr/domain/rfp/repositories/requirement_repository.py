@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import List, Optional, Dict, Any
 from datetime import datetime
 
-from app.domain.rfp.schemas.rfp_schema import (
+from domain.rfp.schemas.rfp_schema import (
     RfPDocument,
     Requirement,
     RequirementType,

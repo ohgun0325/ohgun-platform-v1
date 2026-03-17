@@ -16,7 +16,8 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT))
+kr_root = ROOT / "api" / "ohgun" / "kr"
+sys.path.insert(0, str(kr_root))
 
 JSONL_PATH = ROOT / "data" / "soccer" / "embeddings" / "players_embeddings.jsonl"
 DB_EMBEDDING_DIM = 768  # players_embeddings.embedding = Vector(768)
@@ -43,9 +44,9 @@ def main() -> None:
         sys.exit(1)
 
     try:
-        from app.core.database import get_db_connection
+        from core.database import get_db_connection
     except ImportError as e:
-        print(f"[오류] app.core.database import 실패: {e}")
+        print(f"[오류] core.database import 실패: {e}")
         print("       프로젝트 루트에서 실행하세요: python scripts/upload_players_embeddings_to_neon.py")
         sys.exit(1)
 

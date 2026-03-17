@@ -25,7 +25,7 @@ prompt = f"""다음 SQLAlchemy Schedule 모델을 참고하여 ScheduleEmbedding
 - created_at: TIMESTAMP(timezone=True), server_default=now(), nullable=False, comment='레코드 생성 시간'
 
 === 요구사항 ===
-1. Base 클래스: from app.domain.shared.bases import Base 사용
+1. Base 클래스: from domain.shared.bases import Base 사용
 2. pgvector: from pgvector.sqlalchemy import Vector 사용
 3. SQLAlchemy imports: Column, BigInteger, Text, ForeignKey, TIMESTAMP, relationship
 4. 타임스탬프: from sqlalchemy.sql import func 사용하여 server_default=func.now() 설정

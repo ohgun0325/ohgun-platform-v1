@@ -212,7 +212,7 @@ def run_excel_extract_and_correct(
             "error": str | None
         }
     """
-    from app.domain.shared.ms_excel.field_extractor import (
+    from domain.shared.ms_excel.field_extractor import (
         extract_fields_from_excel,
         get_standard_excel_field_definitions,
     )

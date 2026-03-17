@@ -7,9 +7,9 @@ from __future__ import annotations
 
 from typing import List
 
-from app.domain.rfp.schemas import RfPDocument
-from app.domain.proposal.schemas import ProposalDocument
-from app.domain.evaluation.schemas.evaluation_schema import RuleValidationResult
+from domain.rfp.schemas import RfPDocument
+from domain.proposal.schemas import ProposalDocument
+from domain.evaluation.schemas.evaluation_schema import RuleValidationResult
 
 
 class RuleValidator:

@@ -5,12 +5,12 @@
 2. pymupdf_strategy: 빠른 텍스트 추출 및 이미지 렌더링
 """
 
-from app.domain.shared.pdf.strategies.pdf_strategy import PDFExtractionStrategy
-from app.domain.shared.pdf.strategies.pdfplumber_strategy import (
+from domain.shared.pdf.strategies.pdf_strategy import PDFExtractionStrategy
+from domain.shared.pdf.strategies.pdfplumber_strategy import (
     PDFPlumberStrategy,
     PDFPlumberTableExtractor,
 )
-from app.domain.shared.pdf.strategies.pymupdf_strategy import (
+from domain.shared.pdf.strategies.pymupdf_strategy import (
     PyMuPDFStrategy,
     PyMuPDFImageExtractor,
 )
