@@ -1,4 +1,4 @@
-"""KOICA Chat API - soccer의 player_router / schedule_router 등과 동일한 역할.
+"""KOICA Chat API - KOICA 도메인 질의 처리."""
 
 KOICA 도메인 내 '채팅' 기능 전용 라우터.
 """

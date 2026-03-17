@@ -32,10 +32,6 @@ from api.v1.admin.user_router import router as user_router
 from api.v1.evaluation.evaluation_router import router as evaluation_router
 from api.v1.ocr.ocr_router import router as ocr_router
 from api.v1.excel.excel_router import router as excel_router
-from api.v10.soccer.player_router import router as soccer_player_router
-from api.v10.soccer.team_router import router as soccer_team_router
-from api.v10.soccer.stadium_router import router as soccer_stadium_router
-from api.v10.soccer.schedule_router import router as soccer_schedule_router
 from core import (
     insert_sample_data,
     setup_pgvector,
@@ -58,18 +54,6 @@ async def lifespan(app: FastAPI):
 
     # Wait for database (동기 작업을 비동기로 실행)
     await asyncio.to_thread(wait_for_db)
-
-    # Soccer 테이블 마이그레이션 적용 (Alembic upgrade head 만 수행)
-    # - 새로운 revision은 생성하지 않고, 이미 생성된 마이그레이션만 적용한다.
-    try:
-        from core.database.migrations import apply_soccer_migrations
-
-        await asyncio.to_thread(apply_soccer_migrations)
-    except Exception as e:
-        print(f"⚠️ Soccer 테이블 마이그레이션 적용 중 오류: {e}")
-        import traceback
-        traceback.print_exc()
-        # 마이그레이션 실패해도 서버는 계속 실행
 
     # Setup pgvector (동기 작업을 비동기로 실행)
     db_connection, embedding_dimension = await asyncio.to_thread(setup_pgvector)
@@ -358,10 +342,6 @@ app.include_router(user_router)  # admin user (rule-based / policy-based)
 app.include_router(evaluation_router, prefix="/api/v1")  # RfP 평가 시스템
 app.include_router(ocr_router, prefix="/api/v1")  # 글자 인식 OCR
 app.include_router(excel_router, prefix="/api/v1")  # Excel 필드 자동 추출
-app.include_router(soccer_player_router)  # soccer player upload
-app.include_router(soccer_team_router)  # soccer team upload
-app.include_router(soccer_stadium_router)  # soccer stadium upload
-app.include_router(soccer_schedule_router)  # soccer schedule upload
 
 
 @app.get("/", response_class=HTMLResponse)

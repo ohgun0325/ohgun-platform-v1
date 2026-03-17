@@ -9,6 +9,7 @@ sentence-transformers>=2.2.0
 
 # 데이터베이스 (NeonDB PostgreSQL)
 psycopg2-binary>=2.9.9
+asyncpg>=0.30.0
 pgvector>=0.2.4
 
 # FastAPI 서버

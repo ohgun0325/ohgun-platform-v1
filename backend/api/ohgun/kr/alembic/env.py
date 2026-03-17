@@ -2,25 +2,14 @@
 import sys
 from pathlib import Path
 
-# app 폴더에서 실행해도 프로젝트 루트(langchain)를 모듈 경로에 추가
-_project_root = Path(__file__).resolve().parent.parent.parent
-if _project_root not in sys.path:
-    sys.path.insert(0, str(_project_root))
+# kr 모듈 루트를 Python 경로에 추가
+_kr_root = Path(__file__).resolve().parent.parent
+if str(_kr_root) not in sys.path:
+    sys.path.insert(0, str(_kr_root))
 
 from logging.config import fileConfig
 from sqlalchemy import engine_from_config, pool
 from alembic import context
-
-# Base 메타데이터 import (모든 모델이 등록되도록)
-from domain.soccer.models.bases import Base
-# Soccer 도메인 모델 import (테이블이 등록되도록)
-from domain.soccer.models.bases import (
-    player_embeddings,
-    players,
-    schedules,
-    stadium,
-    teams,
-)
 
 # Alembic Config 객체
 config = context.config
@@ -29,8 +18,8 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-# Base의 메타데이터를 target_metadata로 설정
-target_metadata = Base.metadata
+# 현재는 Base 메타데이터가 없으므로 None으로 설정
+target_metadata = None
 
 def run_migrations_offline() -> None:
     """Run migrations in 'offline' mode."""

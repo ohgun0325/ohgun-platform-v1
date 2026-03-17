@@ -15,9 +15,6 @@ from domain.chat_hub.services.question_classifier import QuestionClassification
 from domain.koica.hub.orchestrators.koica_orchestrator import (
     KoicaOrchestrator,
 )
-from domain.soccer.hub.orchestrators.soccer_orchestrator import (
-    SoccerOrchestrator,
-)
 
 
 class ChatOrchestrator:
@@ -27,11 +24,9 @@ class ChatOrchestrator:
         self,
         classifier: Optional[QuestionClassifier] = None,
         koica_orchestrator: Optional[KoicaOrchestrator] = None,
-        soccer_orchestrator: Optional[SoccerOrchestrator] = None,
     ) -> None:
         self._classifier = classifier or QuestionClassifier()
         self._koica_orch = koica_orchestrator or KoicaOrchestrator()
-        self._soccer_orch = soccer_orchestrator or SoccerOrchestrator()
 
     async def route_question(
         self,
@@ -51,17 +46,10 @@ class ChatOrchestrator:
 
         domain = classification.domain
 
-        # soccer → SoccerOrchestrator (Tool 직접 연결)
-        if domain == "soccer":
-            context_with_domain = {**context, "domain": domain}
-            result = await self._soccer_orch.process(question, context_with_domain)
-        # term, koica, general → Koica 도메인
-        # (General = 데이터셋에 없을 때 Exaone이 Koica 맥락으로 답 생성하는 fallback)
-        else:
-            context_with_domain = {**context, "domain": domain}
-            result = await self._koica_orch.process(question, context_with_domain)
+        # term, koica, general → Koica 도메인으로 라우팅
+        context_with_domain = {**context, "domain": domain}
+        result = await self._koica_orch.process(question, context_with_domain)
 
         # meta 에 분류 결과를 포함시켜 추후 로깅/분석에 활용할 수 있도록 한다.
         result.meta.setdefault("classification", asdict(classification))
         return result
-

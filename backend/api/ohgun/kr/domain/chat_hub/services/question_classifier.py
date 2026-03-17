@@ -1,4 +1,4 @@
-"""질문 도메인 분류기 (term / koica / soccer / general).
+"""질문 도메인 분류기 (term / koica / general).
 
 초기 버전은 가벼운 **룰 기반** 분류만 수행하고,
 추후 필요 시 KoElectra 등의 다중 클래스 분류기로 교체할 수 있도록
@@ -11,7 +11,7 @@ from dataclasses import dataclass
 from typing import Dict, Literal
 
 
-DomainLabel = Literal["term", "koica", "soccer", "general"]
+DomainLabel = Literal["term", "koica", "general"]
 
 
 @dataclass(frozen=True)
@@ -25,7 +25,7 @@ class QuestionClassification:
 
 
 class QuestionClassifier:
-    """질문을 term / koica / soccer / general 중 하나로 분류하는 간단한 분류기."""
+    """질문을 term / koica / general 중 하나로 분류하는 간단한 분류기."""
 
     def __init__(self) -> None:
         # 키워드 목록은 향후 환경설정/DB 등으로 분리 가능
@@ -47,20 +47,6 @@ class QuestionClassifier:
             "oda",
             "공적개발원조",
         ]
-        self._soccer_keywords = [
-            "축구",
-            "선수",
-            "팀",
-            "경기",
-            "일정",
-            "경기장",
-            "구단",
-            "k리그",
-            "k06",
-            "player",
-            "schedule",
-            "stadium",
-        ]
 
     def classify(self, text: str) -> QuestionClassification:
         """질문 텍스트를 기반으로 도메인을 분류합니다.
@@ -74,7 +60,6 @@ class QuestionClassifier:
             scores: Dict[DomainLabel, float] = {
                 "term": 0.0,
                 "koica": 0.0,
-                "soccer": 0.0,
                 "general": 1.0,
             }
             return QuestionClassification(
@@ -86,18 +71,16 @@ class QuestionClassifier:
 
         term_score = self._score_for_keywords(normalized, self._term_keywords)
         koica_score = self._score_for_keywords(normalized, self._koica_keywords)
-        soccer_score = self._score_for_keywords(normalized, self._soccer_keywords)
 
         # 기본 general 점수는 0.5에서 시작하고,
-        # term/koica/soccer 스코어가 높을수록 상대적으로 줄어든다고 가정.
+        # term/koica 스코어가 높을수록 상대적으로 줄어든다고 가정.
         general_score = max(
-            0.0, 0.5 - max(term_score, koica_score, soccer_score) / 2
+            0.0, 0.5 - max(term_score, koica_score) / 2
         )
 
         scores = {
             "term": term_score,
             "koica": koica_score,
-            "soccer": soccer_score,
             "general": general_score,
         }
 

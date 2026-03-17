@@ -22,10 +22,7 @@ from domain.terms.services.term_service import TermService
 
 
 class KoicaOrchestrator:
-    """KOICA 도메인 질의를 처리하는 오케스트레이터.
-    
-    Soccer의 player_orchestrator, schedule_orchestrator 등과 동일한 역할.
-    """
+    """KOICA 도메인 질의를 처리하는 오케스트레이터."""
 
     def __init__(
         self,

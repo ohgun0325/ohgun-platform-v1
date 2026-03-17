@@ -127,8 +127,8 @@ def enqueue_embedding_job(
     """임베딩 배치 작업을 BullMQ 큐에 추가.
 
     Args:
-        domain: 도메인 (예: "soccer")
-        entity_type: 엔티티 타입 (예: "player", "team", "stadium", "schedule")
+        domain: 도메인 (예: "koica")
+        entity_type: 엔티티 타입 (예: "project", "report")
         job_id: 작업 고유 ID (중복 방지용)
         limit: 최대 처리 건수 (None이면 전체)
         add: True면 기존 임베딩 유지, 미존재만 추가. None/False면 전체 삭제 후 재생성.
