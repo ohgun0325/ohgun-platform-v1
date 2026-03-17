@@ -1,4 +1,4 @@
-"""KOICA 도메인 라우터 - KOICA 관련 API 엔드포인트 통합."""
+"""KOICA 도메인 라우터 - KOICA 관련 API 엔드포인트 통합.
 
 - chat_router: KOICA 채팅 API (/api/v1/koica/chat)
 - 추후 project_router, qa_router 등 추가 가능
