@@ -1,4 +1,4 @@
-"""KOICA Chat API - KOICA 도메인 질의 처리."""
+"""KOICA Chat API - KOICA 도메인 질의 처리.
 
 KOICA 도메인 내 '채팅' 기능 전용 라우터.
 """
