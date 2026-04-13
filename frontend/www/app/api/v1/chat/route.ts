@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 180000);
 
-    const res = await fetch(`${API_BASE_URL}/api/v1/chat`, {
+    const res = await fetch(`${API_BASE_URL}/api/v1/koica/chat`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),

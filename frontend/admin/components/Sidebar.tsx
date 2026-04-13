@@ -157,12 +157,6 @@ export default function Sidebar({ isOpen, onClose, activeSection, onSectionChang
                 >
                   글자 인식 OCR
                 </button>
-                <button
-                  onClick={() => handleAIServiceItemClick('/excel')}
-                  className="w-full text-left px-4 py-2 rounded-lg transition-colors bg-gray-50 text-gray-700 hover:bg-gray-100 text-sm"
-                >
-                  Excel 템플릿 자동완성
-                </button>
               </div>
             )}
           </div>

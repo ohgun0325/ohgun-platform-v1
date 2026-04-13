@@ -31,7 +31,6 @@ from api.v1.term.term_router import router as term_router
 from api.v1.admin.user_router import router as user_router
 from api.v1.evaluation.evaluation_router import router as evaluation_router
 from api.v1.ocr.ocr_router import router as ocr_router
-from api.v1.excel.excel_router import router as excel_router
 from core import (
     insert_sample_data,
     setup_pgvector,
@@ -341,7 +340,6 @@ app.include_router(term_router)  # terms
 app.include_router(user_router)  # admin user (rule-based / policy-based)
 app.include_router(evaluation_router, prefix="/api/v1")  # RfP 평가 시스템
 app.include_router(ocr_router, prefix="/api/v1")  # 글자 인식 OCR
-app.include_router(excel_router, prefix="/api/v1")  # Excel 필드 자동 추출
 
 
 @app.get("/", response_class=HTMLResponse)

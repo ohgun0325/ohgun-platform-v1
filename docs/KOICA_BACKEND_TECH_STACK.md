@@ -899,7 +899,6 @@ FastAPI 응답
 ### 12.2 내부 문서
 
 - `docs/KOICA_RFP_EVALUATOR_TECHNICAL_DESIGN.md`: RfP 평가 시스템 설계
-- `docs/SOCCER_EXAONE_EMBEDDING_PROCESS.md`: Soccer 도메인 임베딩 프로세스
 - `docs/DETECT_STAMP_API.md`: 인감도장/서명 검출 API
 - `README.md`: 프로젝트 전체 README
 
